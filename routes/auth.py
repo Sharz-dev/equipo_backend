@@ -20,11 +20,11 @@ def login():
         access_token = create_access_token(identity=user.email)
         return jsonify(access_token=access_token)
 
-    except KeyError as ke:
-        return jsonify({"msg": f"Missing required field: {str(ke)}"}), 400
+    except KeyError as e:
+        return jsonify({"msg": f"Missing required field: {str(e)}"}), 400
 
     except AttributeError:
-        return jsonify({"msg": "Invalid request structure or user model error"}), 500
+        return jsonify({"msg": "Invalid request or user model error"}), 500
 
     except Exception as e:
         return jsonify({"msg": "An unexpected error occurred", "error": str(e)}), 500
